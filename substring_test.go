@@ -117,16 +117,6 @@ func TestStartIndexEqualsEndIndex(t *testing.T) {
 	}
 }
 
-func TestStartIndexPlus1EqualsEndIndex(t *testing.T) {
-	for _, hw := range helloWorlds {
-		substring := Substring(hw.s, 0, 1)
-		wanted := emptyString
-		if wanted != substring {
-			t.Fatalf("Wanted %v, but got %v", wanted, substring)
-		}
-	}
-}
-
 func TestBothIndicesNegative(t *testing.T) {
 	for _, hw := range helloWorlds {
 		substring := Substring(hw.s, -5, -2)
@@ -134,5 +124,30 @@ func TestBothIndicesNegative(t *testing.T) {
 		if wanted != substring {
 			t.Fatalf("Wanted %v, but got %v", wanted, substring)
 		}
+	}
+}
+
+func TestSubstringSingleRune(t *testing.T) {
+	s := "Hallo Welt"
+	var substring string
+	var wanted string
+	substring = Substring(s, 0, 1)
+	wanted = "H"
+	if wanted != substring {
+		t.Fatalf("Wanted %v, but got %v", wanted, substring)
+	}
+	substring = Substring(s, 6, 7)
+	wanted = "W"
+	if wanted != substring {
+		t.Fatalf("Wanted %v, but got %v", wanted, substring)
+	}
+}
+
+func TestSubstringMinus1To0(t *testing.T) {
+	s := "Hallo Welt"
+	substring := Substring(s, -1, 0)
+	wanted := emptyString
+	if wanted != substring {
+		t.Fatalf("Wanted %v, but got %v", wanted, substring)
 	}
 }

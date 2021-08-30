@@ -6,8 +6,8 @@ const emptyString = ``
 // and endIndex (exclusive). The substring is based on the number of indiviual
 // runes in the string; not based on bytes!
 // If the startIndex is greater than the number of runes an empty string is
-// returned. If startIndex == endIndex or startIndex + 1 == endIndex an empty
-// string is returned. If startIndex > endIndex and empty string is returend.
+// returned. If startIndex == endIndex an empty string is returned.
+// If startIndex > endIndex and empty string is returend.
 func Substring(s string, startIndex, endIndex int) string {
 	runes := []rune(s)
 	length := len(runes)
@@ -15,7 +15,7 @@ func Substring(s string, startIndex, endIndex int) string {
 	if startIndex > length {
 		return emptyString
 	}
-	if startIndex == endIndex || startIndex+1 == endIndex {
+	if startIndex == endIndex {
 		return emptyString
 	}
 
@@ -24,7 +24,7 @@ func Substring(s string, startIndex, endIndex int) string {
 	}
 	// Check this here, for cases in which the provided indices are both negative.
 	// e.g. startIndex = -10, endIndex = -1
-	if startIndex > endIndex {
+	if startIndex >= endIndex {
 		return emptyString
 	}
 	if endIndex > length {
